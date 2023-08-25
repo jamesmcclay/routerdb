@@ -1,0 +1,24 @@
+.app {
+  padding: 10px;
+}
+
+.jumbotron {
+  text-align: center;
+  color: #EEEEEE;
+  background-color: #4E4FEB !important;
+}
+
+.card {
+  margin-bottom: 10px;
+  background-color: #068FFF;
+}
+
+.card-header {
+  color: #EEEEEE;
+  background-color: #068FFF !important;
+  font-weight: bold;
+}
+
+.btn {
+  margin-right: 5px;
+}

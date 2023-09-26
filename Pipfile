@@ -13,6 +13,10 @@ gunicorn = "latest"
 beautifulsoup4 = "latest"
 python-dotenv = "latest"
 psycopg2-binary = "latest"
+flask = "latest"
+flask-restful = "latest"
+boto3 = "latest"
+aws-wsgi = "latest"
 
 [requires]
 python_version = "3.10.12"

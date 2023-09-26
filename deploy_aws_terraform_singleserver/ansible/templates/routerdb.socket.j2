@@ -1,0 +1,8 @@
+[Unit]
+Description=routerdb socket
+
+[Socket]
+ListenStream=/run/routerdb.sock
+
+[Install]
+WantedBy=sockets.target

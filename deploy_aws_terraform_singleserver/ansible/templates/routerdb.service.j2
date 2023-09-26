@@ -1,0 +1,21 @@
+[Unit]
+Description=Router DB
+Requires=routerdb.socket
+After=network.target
+
+[Service]
+Type=simple
+User = {{ user }}
+Group = {{ user }}
+WorkingDirectory = {{ dst_app_dir }}
+ExecStart=/usr/bin/python3 -m gunicorn \
+    --workers=1 \
+    --threads=10 \
+    --bind unix:/run/routerdb.sock \
+    routerdb_django.wsgi
+ExecReload = /bin/kill -s HUP $MAINPID
+ExecStop = /bin/kill -s TERM $MAINPID
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

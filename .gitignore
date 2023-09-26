@@ -1,3 +1,16 @@
 .vscode
 Pipfile.lock
 *__pycache__*
+frontend_react_vite/node_modules/
+frontend_react_vite/dist/
+*lock*
+*.cjs
+public/
+*.swp
+keys/
+*.backup
+*.tfstate
+*.tgz
+*.old
+.terraform
+*.code-workspace

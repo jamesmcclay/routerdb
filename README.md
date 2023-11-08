@@ -61,18 +61,18 @@ To deploy this project to your AWS account:
    ```bash
    git clone https://github.com/jamesmcclay/routerdb.git
    ```
-2. **Export AWS secret variables**
+2. **Export AWS secret variables:**
    ```bash
    export AWS_ACCESS_KEY_ID=asuperawesomekeyid
    export AWS_SECRET_ACCESS_KEY=asupersecretkeysecret
    ```
    
-4. **Choose a deployment and deploy**
+4. **Choose a deployment and deploy:**
    
    For EC2 server deployment:
    ```bash
-   cd routerdb/deploy_aws_terraform_singleserver
    export SSH_KEY=anawesomeawssshkeyname
+   cd routerdb/deploy_aws_terraform_singleserver
    ./deploy.sh
    ```
    > :warning: **Ansible requires SSH access to the deployed EC2**: Make sure to export `SSH_KEY` environment variable and that key is used by your SSH client and uploaded to AWS!

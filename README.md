@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This repository contains a full-stack web application that combines Python and ReactJS to create a basic but full-featured interactive web experience.
+This repository contains a full-stack web application that combines Python and ReactJS to create a basic but full-featured interactive web experience. It is deployed using Terraform and Ansible using AWS services - EC2 for a server deployment, and Lambda, DynamoDB, and S3 for a serverless deployment.
 
 ### Features
 

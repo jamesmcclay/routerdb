@@ -1,22 +1,24 @@
 [[source]]
-url = "https://pypi.python.org/simple"
+url = "https://pypi.org/simple"
 verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "latest"
-djangorestframework = "latest"
-django-cors-headers = "latest"
-requests = "latest"
-pandas = "latest"
-gunicorn = "latest"
-beautifulsoup4 = "latest"
-python-dotenv = "latest"
-psycopg2-binary = "latest"
-flask = "latest"
-flask-restful = "latest"
-boto3 = "latest"
-aws-wsgi = "latest"
+django = "*"
+djangorestframework = "*"
+django-cors-headers = "*"
+requests = "*"
+pandas = "*"
+gunicorn = "*"
+beautifulsoup4 = "*"
+python-dotenv = "*"
+psycopg2-binary = "*"
+flask = "*"
+flask-restful = "*"
+boto3 = "*"
+serverless-wsgi = "*"
+
+[dev-packages]
 
 [requires]
-python_version = "3.10.12"
+python_version = "3.10"

@@ -1,15 +1,32 @@
 from flask import Flask
 from flask_restful import reqparse, abort, Api, Resource
 import boto3
-import awsgi
+import serverless_wsgi
 import os
 from uuid import uuid4
+from pathlib import Path
+from werkzeug.exceptions import HTTPException
+import traceback
+import json
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app, send_wildcard=True, methods= ['GET', 'HEAD', 'POST', 'OPTIONS', 'PUT', 'PATCH', 'DELETE'])
 api = Api(app)
 
-DB_ENDPOINT=os.environ.get('DYNAMO_ENDPOINT', 'http://localhost:8001')
+ENVIRONMENT = os.environ.get('ENVIRONMENT','local')
+DB_ENDPOINT=os.environ.get('DYNAMO', 'local')
 DB_TABLE=os.environ.get('DYNAMO_TABLE', 'routers')
+
+if ENVIRONMENT == 'local':
+    from dotenv import load_dotenv
+    dotenv_path = Path(__file__).parent.parent / 'keys' / 'aws'
+    load_dotenv(dotenv_path=dotenv_path)
+
+if DB_ENDPOINT == 'aws':
+    DB_ENDPOINT='https://dynamodb.ap-northeast-1.amazonaws.com'
+else:
+    DB_ENDPOINT='http://localhost:8001'
 
 dynamodb = boto3.resource('dynamodb', 'ap-northeast-1', endpoint_url=DB_ENDPOINT)
 ROUTERS = dynamodb.Table(DB_TABLE)
@@ -35,6 +52,25 @@ def get_content(args,id=None):
 parser = reqparse.RequestParser()
 parser.add_argument('title')
 parser.add_argument('description')
+
+@app.errorhandler(HTTPException)
+def handle_exception(e):
+    """Return JSON instead of HTML for HTTP errors."""
+    # start with the correct headers and status code from the error
+    response = e.get_response()
+    # replace the body with JSON
+    error = {
+        "success": False,
+        "message": "Server error.",
+        "code": e.code,
+        "name": e.name,
+        "description": e.description,
+    }
+    #if ENVIRONMENT == '':
+    error['traceback'] = traceback.format_exc()
+    response.data = json.dumps(error)
+    response.content_type = "application/json"
+    return response
 
 class Router(Resource):
     def get(self, id):
@@ -70,7 +106,9 @@ api.add_resource(RouterList, '/api/routers/')
 api.add_resource(Router, '/api/routers/<id>/')
 
 def lambda_handler(event, context):
-    return awsgi.response(app, event, context)
+    response = serverless_wsgi.handle_request(app, event, context)
+    print(response)
+    return response
 
 
 if __name__ == '__main__':

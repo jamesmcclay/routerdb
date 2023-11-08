@@ -44,7 +44,7 @@ resource "aws_security_group" "routerdb_sg" {
 resource "aws_instance" "routerdb_server" {
   ami           = "ami-09937bb9852528c94"
   instance_type = "t2.micro"
-  key_name      = "Pangolin"
+  key_name      = "MacMini"
 
   vpc_security_group_ids= [aws_security_group.routerdb_sg.id]
 

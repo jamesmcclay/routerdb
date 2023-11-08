@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Router from './components/Router';
@@ -20,7 +19,7 @@ function App() {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     };
-    const response = await fetch("api/routers/", requestOptions)
+    const response = await fetch(import.meta.env.VITE_API_URI + "/api/routers/", requestOptions)
     const json = await response.json();
     setRouters(json);
   }
@@ -36,7 +35,7 @@ function App() {
       body: JSON.stringify({ title: title, description: description })
     };
       
-    let resp = fetch('/api/routers/', requestOptions)
+    let resp = fetch(import.meta.env.VITE_API_URI + '/api/routers/', requestOptions)
       .then((resp) => fetchUserData());
     setShowNew(false);
   };

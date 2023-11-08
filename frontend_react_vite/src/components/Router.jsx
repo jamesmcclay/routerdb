@@ -14,7 +14,7 @@ function Router(props) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ title: title, description: description })
     };
-    let resp = fetch(`/api/routers/${myId}/`, requestOptions)
+    let resp = fetch(import.meta.env.VITE_API_URI + `/api/routers/${myId}/`, requestOptions)
       .then((resp) => props.fetchUserData())
       .then(() => setShow(false));
   };
@@ -24,7 +24,7 @@ function Router(props) {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
     };
-      let resp = fetch(`/api/routers/${myId}/`, requestOptions)
+      let resp = fetch(import.meta.env.VITE_API_URI + `/api/routers/${myId}/`, requestOptions)
         .then((resp) => props.fetchUserData());
     };
 

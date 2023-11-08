@@ -14,3 +14,7 @@ keys/
 *.old
 .terraform
 *.code-workspace
+.DS_Store
+tmp/
+*.zip
+routerdb_flask/python/

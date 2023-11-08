@@ -3,19 +3,21 @@
   become: false
   gather_facts: false
   vars:
-    local_user: "james"
+    local_user: "jamesmcclay"
+    local_home: "/Users/{{ local_user }}"
+    local_projectdir: "{{ local_home }}/routerdb"
     user: "{{ ansible_user }}"
     db_user: "james"
     db_name: "routerdb"
     db_password: "james"
     dst_root_dir: "/opt/routerdatabase"
-    src_app_dir: "/home/{{ local_user }}/routerdatabase/routerdb_django"
+    src_app_dir: "{{ local_projectdir }}/routerdb_django"
     dst_app_dir: "/opt/routerdatabase/routerdb_django"
-    npm_dir: "/home/{{ local_user }}/routerdatabase/frontend_react_vite"
-    src_react_dir: "/home/{{ local_user }}/routerdatabase/frontend_react_vite/dist"
+    npm_dir: "{{ local_projectdir }}/frontend_react_vite"
+    src_react_dir: "{{ local_projectdir }}/frontend_react_vite/dist"
     dst_react_dir: "/opt/routerdatabase/dist"
     www_host: "{{ ansible_host }}"
-    initial: false
+    initial: true
   tasks:
 
     - name: Install Python pip
@@ -63,12 +65,6 @@
         dest: "{{ dst_root_dir }}/deploy_archive.tgz"
         owner: "{{ user }}"
         group: "{{ user }}"
-
-    - name: Build react for prod
-      shell: "npm run build"
-      args:
-        chdir: "{{ npm_dir }}"
-      delegate_to: localhost
 
     - name: Copy react to remote
       copy:

@@ -23,7 +23,8 @@ This repository contains a full-stack web application that combines Python and R
 
 The project is organized into frontend, backend options (flask and django), and deployment option components (AWS server or serverless).
 
-Project Root
+```bash
+#Project Root
 ├── Pipfile
 ├── deploy_aws_terraform_lambda
 │   ├── deploy.sh
@@ -50,6 +51,7 @@ Project Root
 ├── routerdb_flask
 │   ├── api.py
 │   └── requirements.txt
+```
 
 ## Getting Started
 

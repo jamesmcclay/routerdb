@@ -58,9 +58,9 @@ The project is organized into frontend, backend options (flask and django), and 
 To deploy this project to your AWS account:
 
 1. **Clone the repository:**
-```bash
+   ```bash
    git clone https://github.com/jamesmcclay/routerdb.git
-```
+   ```
 2. **Export AWS secret variables**
    ```bash
    export AWS_ACCESS_KEY_ID=asuperawesomekeyid
@@ -69,19 +69,19 @@ To deploy this project to your AWS account:
    
 4. **Choose a deployment and deploy**
    
-For EC2 server deployment:
+   For EC2 server deployment:
    ```bash
    cd routerdb/deploy_aws_terraform_singleserver
    export SSH_KEY=anawesomeawssshkeyname
    ./deploy.sh
    ```
-> :warning: **Ansible requires SSH access to the deployed EC2**: Make sure to export `SSH_KEY` environment variable and that key is used by your SSH client and uploaded to AWS!
+   > :warning: **Ansible requires SSH access to the deployed EC2**: Make sure to export `SSH_KEY` environment variable and that key is used by your SSH client and uploaded to AWS!
 
-For serverless deployment to lambda/DynamoDB:
+   For serverless deployment to lambda/DynamoDB:
    ```bash
    cd routerdb/deploy_aws_terraform_lambda
    ./deploy.sh
    ```
 5. **Access react URL**
-  Once finished, the `deploy.sh` script will print out a URL to access the project, click it. Enjoy!
+   Once finished, the `deploy.sh` script will print out a URL to access the project, click it. Enjoy!
 

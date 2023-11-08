@@ -68,6 +68,7 @@ To deploy this project to your AWS account:
    ```
    
 4. **Choose a deployment and deploy**
+   
 For EC2 server deployment:
    ```bash
    cd routerdb/deploy_aws_terraform_singleserver
